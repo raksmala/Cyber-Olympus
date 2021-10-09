@@ -34,7 +34,7 @@ class LaporanController extends Controller
     
     public function customer() 
     {
-        $customer = Customer::with('order')->get();
+        $customer = Order::with('customer')->paginate(10);
         return view('/laporan/customer', ['customer' => $customer]);
     }
 
@@ -46,7 +46,8 @@ class LaporanController extends Controller
     
     public function item() 
     {
-        return view('/laporan/item');
+        $product = Product::with('orderDetail.order')->paginate(10);
+        return view('/laporan/item', ['product' => $product]);
     }
     
     public function category() 
@@ -90,7 +91,6 @@ class LaporanController extends Controller
         $tanggalAwal = explode('/', $start);
         $tanggalAkhir = explode('/', $end);
         $category = Category::with('product.orderDetail.order')->get();
-        dd($category);
         return view('/laporan/detailCategory');
     }
 }

@@ -19,12 +19,15 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($product as $data)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $data->product_name }}</td>
+                    <td><a href="{{ url('/laporan/item/detail') }}/{{ $data->id }}" class="btn btn-primary waves-effect waves-light" style="margin-top:10px;">Detail</a></td>
                 </tr>        
+                @endforeach
+            </tbody>
+            {{ $product->links() }}   
             </tbody>
         </table>
     </div>

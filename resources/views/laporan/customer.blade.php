@@ -20,13 +20,16 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($customer as $data)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $data->name }}</td>
+                    <td><a href="{{ url('/laporan/customer/detail') }}/{{ $data->customer->id }}" class="btn btn-primary waves-effect waves-light" style="margin-top:10px;">Detail</a></td>
+                    <td><a href="{{ url('/laporan/category/detail-agent') }}/{{ $data->customer->id }}" class="btn btn-primary waves-effect waves-light" style="margin-top:10px;">Detail</a></td>
                 </tr>        
+                @endforeach
             </tbody>
+            {{ $customer->links() }}
         </table>
     </div>
 </div>
